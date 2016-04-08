@@ -12,4 +12,4 @@ Join our Slack Community: https://erik62.typeform.com/to/tbakOR
 
 Sign up for the Platform: https://meya.ai
 
-Read the docs: https://docs.meya.ai
+Read the docs: http://docs.meya.ai
