@@ -1,0 +1,11 @@
+name: pizza
+states:
+    first:
+        component: meya.input_string
+        properties:
+            output: pizza_type
+            text: What type of pizza?
+    second:
+        component: meya.text
+        properties:
+            text: "Thanks, we've received your order for: {{ flow.pizza_type }}"

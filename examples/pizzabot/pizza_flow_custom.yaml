@@ -1,0 +1,9 @@
+name: pizza2
+states:
+    first:
+        component: meya.input_string
+        properties:
+            output: pizza_type
+            text: What type of pizza?
+    second:
+        component: pizza_confirmation
