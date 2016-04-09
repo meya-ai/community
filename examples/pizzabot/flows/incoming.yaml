@@ -1,0 +1,6 @@
+name: incoming
+states:
+    first:
+        component: meya.text
+        properties:
+            text: You want{{ flow.pizza_type }}pizza.

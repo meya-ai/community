@@ -1,0 +1,23 @@
+name: check_age
+states:
+    ask:
+        component: meya.input_string
+        properties:
+            text: How old are you?
+            output: age
+    check:
+        component: age_checker
+        transitions:
+            under: block
+            over: allow
+    block:
+        component: meya.text
+        properties:
+            text: Sorry, you have to be 18 to order our pizza. (Don't ask me why,
+                I just work here)
+        return: true
+    allow:
+        component: meya.text
+        properties:
+            text: Awesome, you can order :) We discriminate against age.
+        return: true

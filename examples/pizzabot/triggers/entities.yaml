@@ -1,0 +1,2 @@
+# triggers on "I want a pepperoni pizza." for example
+pattern: ^.*(\bwant\b)(?P<pizza_type>.*)(\bpizza\b).*$

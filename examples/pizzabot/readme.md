@@ -2,20 +2,28 @@
 
 Try me here: https://meya.ai/pizzabot
 
-Say 'hi' to start.
+Responds to:
+- hi
+- age
+- order a pizza
+- I want a pepperoni pizza
+- age
 
 **Flows:**
 
-1. `pizza_flow_simple.yaml`: no custom components, uses mustache syntax inline
-2. `pizza_flow_custom.yaml`: a custom component that reads from datastore
+1. `simple.yaml`: no custom components, uses mustache syntax inline
+2. `custom.yaml`: includes a custom component that reads from datastore
+3. `incoming.yaml`: expects pre-parsed data from the intent filter (regex, wit.ai, etc.)
+4. `conditional.yaml`: checks the user's age and conditionally traverses states
 
 
 **Triggers:**
 
-A simple regex filter for the words "order" and "pizza"
+1. `order.yaml`: A simple regex filter for the words "order" and "pizza"
+2. `entities.yaml`: Extracts pizza type from the text (ie. "hawaiian")
 
-    pattern: ^.*(\border\b).*(\bpizza\b).*$
 
 **Components:**
 
-`pizza_confirmation.py`: referenced by  `pizza_flow_custom.yaml` and outputs conditional response based on pizza type.
+`confirmation.py`: outputs response based on pizza type.
+`age.py`: checks the age (age>=18?) and returns flow control actions ("over", "under")

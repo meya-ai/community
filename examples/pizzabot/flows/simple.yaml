@@ -1,4 +1,4 @@
-name: pizza
+name: simple
 states:
     first:
         component: meya.input_string

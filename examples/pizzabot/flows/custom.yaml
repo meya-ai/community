@@ -1,4 +1,4 @@
-name: pizza2
+name: custom
 states:
     first:
         component: meya.input_string

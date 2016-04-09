@@ -1,0 +1,2 @@
+# triggers on "please, order me a pizza."
+pattern: ^.*(\border\b).*(\bpizza\b).*$
