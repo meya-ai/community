@@ -17,7 +17,7 @@ Responds to:
 4. `conditional.yaml`: checks the user's age and conditionally traverses states
 
 
-**Triggers:**
+**Intents:**
 
 1. `order.yaml`: A simple regex filter for the words "order" and "pizza"
 2. `entities.yaml`: Extracts pizza type from the text (ie. "hawaiian")
