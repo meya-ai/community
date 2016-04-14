@@ -1,0 +1,9 @@
+name: giphy
+states:
+    get_tag:
+        component: meya.input_string
+        properties:
+            text: What sort of gif?
+            output: tag
+    output_gif:
+        component: giphy
