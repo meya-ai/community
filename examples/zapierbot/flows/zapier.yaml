@@ -1,0 +1,26 @@
+name: zapier_lead_email
+states:
+    name:
+        component: meya.input_string
+        properties:
+            output: name
+            text: What's your name?
+    platform:
+        component: meya.input_string
+        properties:
+            output: os
+            text: Which do you prefer Android or iOS?
+    email:
+        component: meya.input_string
+        properties:
+            output: email
+            text: What's your email address?
+    zapier:
+        component: zapier
+        properties:
+            # put your webhook url here (https://zapier.com/zapbook/webhook/)
+            webhook: https://zapier.com/hooks/catch/000000/xxxxxxx/
+    thanks:
+        component: meya.text
+        properties:
+            text: Thanks! We've received your information, {{ flow.name }}.
