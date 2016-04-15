@@ -1,0 +1,28 @@
+name: ifttt
+states:
+    name:
+        component: meya.input_string
+        properties:
+            output: value1
+            text: What's your name?
+    platform:
+        component: meya.input_string
+        properties:
+            output: value2
+            text: Which do you prefer Android or iOS?
+    email:
+        component: meya.input_string
+        properties:
+            output: value3
+            text: What's your email address?
+    zapier:
+        component: ifttt
+        properties:
+            # put your IFTTT / maker key here
+            key: XXXXXXXXXXXXXXXXXXX
+            # put your IFTTT / maker event here
+            event: event_name
+    thanks:
+        component: meya.text
+        properties:
+            text: Thanks! We've received your information, {{ flow.name }}.
