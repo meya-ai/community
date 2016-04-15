@@ -6,7 +6,7 @@ from meya import Component
 class Zapier(Component):
 
     def start(self):
-        url = self.properties.get('webhook') or self.db.request.get('webhook')
+        url = self.properties.get('webhook')
         data = {
             'name': self.db.request.get('name'),
             'os': self.db.request.get('os'),
