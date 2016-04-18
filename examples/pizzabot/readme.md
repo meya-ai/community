@@ -26,4 +26,4 @@ Responds to:
 **Components:**
 
 1. `confirmation.py`: outputs response based on pizza type.
-2. `age.py`: checks the age (age>=18?) and returns flow control actions ("over", "under")
+2. `age_checker.py`: checks the age (age>=18?) and returns flow control actions ("over", "under")
