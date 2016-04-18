@@ -1,7 +1,7 @@
 from meya import Component
 
 
-class AgeFilter(Component):
+class AgeChecker(Component):
 
     def start(self):
         # read in the age, and default to `0` if invalid or missing
