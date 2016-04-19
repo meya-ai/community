@@ -1,0 +1,17 @@
+name: shoe_size
+states:
+    check_profile:
+        component: check_shoe_size
+        transitions:
+            exists: answer
+            doesnt: ask
+    ask:
+        component: meya.input_string
+        properties:
+            output: shoe_size
+            text: What's your shoe size?
+    set:
+        component: set_show_size
+    answer:
+        component: output_shoe_size
+        return: true
