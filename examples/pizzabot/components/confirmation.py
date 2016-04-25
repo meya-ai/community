@@ -5,7 +5,7 @@ class PizzaConfirmation(Component):
 
     def start(self):
         # read the order and make lower case
-        order = self.db.request.get('pizza_type') or ""
+        order = self.db.flow.get('pizza_type') or ""
         order = order.lower()
         print order
 
