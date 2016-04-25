@@ -16,9 +16,9 @@ def farenheit(celsius):
 class Weather(Component):
 
     def start(self):
-        city = self.db.request.get('city') or \
+        city = self.db.flow.get('city') or \
             self.properties.get('city') or "New York"
-        country = self.db.request.get('country') or \
+        country = self.db.flow.get('country') or \
             self.properties.get('country') or "US"
         url = API_URL.format(city=city, country=country, api_key=API_KEY)
         data = requests.get(url).json()
