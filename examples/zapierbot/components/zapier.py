@@ -8,9 +8,9 @@ class Zapier(Component):
     def start(self):
         url = self.properties.get('webhook')
         data = {
-            'name': self.db.request.get('name'),
-            'os': self.db.request.get('os'),
-            'email': self.db.request.get('email')
+            'name': self.db.flow.get('name'),
+            'os': self.db.flow.get('os'),
+            'email': self.db.flow.get('email')
         }
         response = requests.post(
             url=url,
