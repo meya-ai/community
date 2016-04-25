@@ -5,7 +5,7 @@ class AgeChecker(Component):
 
     def start(self):
         # read in the age, and default to `0` if invalid or missing
-        age = self.db.request.get('age') or 0
+        age = self.db.flow.get('age') or 0
         try:
             age = int(age)
         except:
