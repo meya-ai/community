@@ -7,11 +7,11 @@ API_URL = "http://api.giphy.com/v1/gifs/random?tag={tag}&api_key={key}"
 
 class Giphy(Component):
     """Outputs a random giphy url based on passed in tag as either
-    a property or request db"""
+    a property or flow db"""
 
     def start(self):
         tag = self.properties.get('tag') or \
-            self.db.request.get('tag') or "funny"
+            self.db.flow.get('tag') or "funny"
 
         response = requests.get(API_URL.format(tag=tag, key=API_KEY))
         gif = response.json()['data']['url']
