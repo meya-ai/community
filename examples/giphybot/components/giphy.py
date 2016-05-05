@@ -14,7 +14,7 @@ class Giphy(Component):
             self.db.flow.get('tag') or "funny"
 
         response = requests.get(API_URL.format(tag=tag, key=API_KEY))
-        gif = response.json()['data']['url']
+        gif = response.json()['data']['image_url']
 
         message = self.create_message(text=gif)
 
