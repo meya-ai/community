@@ -1,0 +1,15 @@
+name: start_affirmation
+states:
+    intro:
+        component: meya.text
+        properties:
+            text: "Great! I'll send you something nice every minute for the next hour (or until you say 'stop')"
+    start:
+        flow: meya.schedule
+        data:
+            tag: affirmation
+            flow: nice
+            period: minutes
+            interval: 1
+            max_count: 60
+        return: true

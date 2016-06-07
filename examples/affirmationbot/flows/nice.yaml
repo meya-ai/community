@@ -1,0 +1,15 @@
+name: nice
+states:
+    affirm:
+        component: meya.random_text
+        properties:
+            responses:
+            - You're awesome. Don't worry so much.
+            - You are the best you you can be. :)
+            - Don't sweat the small stuff.
+            - When life gives you lemons, make lemonade.
+            - You are too big a gift to the world to waste time on self-pity and sadness.
+            - You are a better person from the hardship that you’ve gone through.
+            - You may be one in 7 billion but you are also one in 7 billion!
+            - You make smart, calculated plans for your future.
+            - Let go of worries that drain your energy.

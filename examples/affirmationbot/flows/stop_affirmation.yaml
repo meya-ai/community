@@ -1,0 +1,11 @@
+name: stop_affirmation
+states:
+    stop:
+        component: meya.schedule_stop
+        properties:
+            tag: affirmation
+    end:
+        component: meya.text
+        properties:
+            text: Ok, I'll stop sending you affirmations now. You can always restart
+                later by saying 'start'.

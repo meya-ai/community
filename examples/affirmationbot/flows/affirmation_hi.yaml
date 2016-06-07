@@ -1,0 +1,17 @@
+name: affirmation_hi
+states:
+    yes_no_state:
+        component: meya.nlp_yes_no
+        properties:
+            text: Hi! Would you like to get periodic affirmations?
+        transitions:
+            'yes': start
+            'no': nevermind
+    start:
+        flow: start_affirmation
+        return: true
+    nevermind:
+        component: meya.text
+        properties:
+            text: No problem. You can always change your mind later by saying 'start'.
+        return: true
