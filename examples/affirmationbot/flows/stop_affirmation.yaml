@@ -7,5 +7,4 @@ states:
     end:
         component: meya.text
         properties:
-            text: Ok, I'll stop sending you affirmations now. You can always restart
-                later by saying 'start'.
+            text: "Ok, I'll stop sending you affirmations now. You can always restart later by saying 'start'."
