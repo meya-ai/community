@@ -11,3 +11,5 @@ Utterances:
 - "start" : starts sending periodic affirmations
 - "stop" : stops sending the affirmations
 - "nice" : trigger the affirmation flow manually
+
+![Intents](https://raw.githubusercontent.com/meya-ai/community/master/examples/affirmationbot/affirmation-features.png)
