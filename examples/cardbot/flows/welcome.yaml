@@ -1,0 +1,10 @@
+name: cardbot_welcome
+states:
+    text_buttons_state:
+        component: meya.text_buttons
+        properties:
+            text: Welcome to the CardBot. This bot demos Meya cards.
+            buttons:
+            -   text: Tell me a joke
+                flow: cardbot_joke
+

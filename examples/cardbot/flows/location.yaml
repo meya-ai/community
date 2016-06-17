@@ -1,0 +1,6 @@
+name: cardbot_location
+states:
+    first:
+        component: meya.text
+        properties:
+            text: Thanks, I see you are in {{ flow.city }}. {{ flow.timezone }}

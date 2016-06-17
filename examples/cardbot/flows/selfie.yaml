@@ -1,0 +1,6 @@
+name: cardbot_selfie
+states:
+    first:
+        component: meya.text
+        properties:
+            text: You are beautiful! {{ flow.value }}

@@ -1,0 +1,12 @@
+name: cardbot_bonus
+states:
+    confirm:
+        component: meya.text
+        properties:
+            text: 'You passed in some data: foo={{ flow.foo }}'
+        delay:
+            relative: 2
+    explode:
+        component: meya.image
+        properties:
+            image_url: http://i.imgur.com/4Ih32Hy.gif

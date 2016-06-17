@@ -1,0 +1,17 @@
+name: cardbot_joke
+states:
+    card_state:
+        component: cardbot_joke
+        transitions:
+            next1: s1
+            next2: s2
+    s1:
+        component: meya.text
+        properties:
+            text: 'S1: You clicked on {{ flow.value }}! ok={{ flow.ok }}'
+        return: true
+    s2:
+        component: meya.text
+        properties:
+            text: 'S2: You clicked on {{ flow.value }}! ok={{ flow.ok }}'
+        return: true
