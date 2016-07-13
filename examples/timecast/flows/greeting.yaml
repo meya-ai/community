@@ -1,0 +1,15 @@
+name: greeting
+states:
+    greeting:
+        component: meya.random_text
+        properties:
+            responses:
+            - "Hey there! \U0001F604"
+            - "Hi! \U0001F604"
+            - "Howdy! \U0001F604"
+        delay:
+            relative: 1
+    help:
+        component: meya.text
+        properties:
+            text: How can I help you today?

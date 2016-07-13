@@ -1,0 +1,12 @@
+name: routing
+intents:
+    greeting: greeting
+    cancel: cancel
+    upgrade: upgrade
+states:
+    greeting:
+        flow: greeting
+    cancel:
+        flow: cancel
+    upgrade:
+        flow: upgrade

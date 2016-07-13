@@ -1,0 +1,16 @@
+name: upgrade
+states:
+    ack:
+        component: meya.text
+        properties:
+            text: I can definitely help you with that.
+        delay:
+            relative: 1
+    auth:
+        flow: auth
+        transitions:
+            done: check
+        delay:
+            relative: 1
+    check:
+        component: check_package

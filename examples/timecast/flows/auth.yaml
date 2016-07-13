@@ -1,0 +1,37 @@
+name: auth
+states:
+    intro:
+        component: meya.text
+        properties:
+            text: Before I can proceed I need to validate your account.
+        delay:
+            relative: 1
+    zip:
+        component: meya.input_pattern
+        properties:
+            text: What's your 5-digit zip code?
+            error_message: Make sure you enter a valid zip code. Try again.
+            pattern: ^([0-9]{5})$
+            output: zip
+            scope: flow
+    bill:
+        component: meya.image
+        properties:
+            image_url: http://i.imgur.com/xdZFVM6.png
+        delay:
+            relative: 0.1
+    account:
+        component: meya.input_pattern
+        properties:
+            text: What's your 9 digit account number? It can be found on the top left
+                of your bill.
+            error_message: Please enter a valid 6 digit account number with numbers
+                and letters. Try again.
+            pattern: ^([0-9]{9})$
+            output: account_id
+            scope: user
+    done:
+        component: meya.text
+        properties:
+            text: Thanks for confirming your account with us.
+        return: true

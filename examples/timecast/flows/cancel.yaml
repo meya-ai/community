@@ -1,0 +1,7 @@
+name: cancel
+states:
+    first:
+        component: meya.text
+        properties:
+            text: I'm so sorry to hear that. Is there anything we can do to keep you?
+                We'd hate to lose you as a customer.
