@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI","Roboto",'Helvetica Neue','Helvetica','Segoe UI',sans-serif;
+        font-size: 14px;
+        padding: 8px;
+        line-height: 18px;
+      }
+      hr {margin-top: 26px;}
+      .btn {
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+          border: 0;
+          text-transform: uppercase;
+          margin-bottom: 0;
+          font-weight: 400;
+          text-align: center;
+          vertical-align: middle;
+          touch-action: manipulation;
+          cursor: pointer;
+          color: white;
+          border: 1px solid transparent;
+          white-space: nowrap;
+          padding: 6px 12px;
+          font-size: 13px;
+          line-height: 1.42857143;
+          border-radius: 2px;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          min-width: 250px;
+          margin-top: 16px;
+      }
+      .btn-pause {background-color: #03A9F4;}
+      .btn-go {background-color: #4CAF50;}
+      .btn-start {background-color: #673AB7;}
+    </style>
+    <script type="text/javascript" src="https://dl.frontapp.com/libs/frontjs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div style="text-align: center;">
+      <p>
+        <strong>Pause</strong> and <strong>unpause</strong> your bot while an agent is speaking.
+      </p>
+      <div><strong>Smooch ID:</strong> <span id="smooch-id">N/A</span></div>
+      <hr>
+      <div><strong>Status:</strong> <span id="bot-status"></span></div>
+      <button class='btn btn-pause' onClick="pause_flow()">Pause Bot</button>
+      <button class='btn btn-go' onclick="unpause_flow()">Unpause Bot</button>
+      <hr>
+      <div><strong>Started: </strong><span id="flow-start"></span></div>
+      <!-- This is where the magic happens -->
+      <button class='btn btn-start' onclick="start_flow('auth')">Auth customer</button>
+      <button class='btn btn-start' onclick="start_flow('vip')">Upgrade VIP</button>
+      <button class='btn btn-start' onclick="start_flow('gold')">Upgrade Gold</button>
+      <button class='btn btn-start' onclick="start_flow('espn')">Add ESPN</button>
+      <button class='btn btn-start' onclick="start_flow('cancel')">Cancel account</button>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var conversation;
+    var front_data;
+    var is_bot_active = true;
+    var meya_base_url = "https://meya.ai/webhook/";
+    var meya_api_key = 'YOUR_MEYA_WEBHOOK_API_KEY';
+    var meya_bot_id = 'YOUR_MEYA_BOT_ID'; // Bxxxxxxxx
+
+    Front.on('conversation', function (data) {
+      // triggered when a conversation is loaded
+      $('#smooch-id').text(data.contact.handle);
+      front_data = data;
+      conversation = data.conversation;
+      update_status();
+    });
+
+    function get_basic_auth(user, password) {
+      var tok = user + ':' + password;
+      var hash = btoa(tok);
+      return "Basic " + hash;
+    };
+
+    function update_status(flow_name='') {
+      $.ajax({
+        type: "POST",
+        url: get_meya_url('status'),
+        data: {"user_id": front_data.contact.handle, "integration": "smooch"},
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('Authorization', get_basic_auth(meya_api_key, ""));
+        },
+        success: function(data){
+          is_bot_active = data.active;
+          bot_status = is_bot_active ? 'Active' : 'Paused';
+          if (flow_name)
+            $('#flow-start').text(flow_name);
+          $('#bot-status').text(bot_status);
+        },
+        error: function(data){
+          alert("Error! There was a problem getting your bot status!");
+        }
+      });
+    }
+
+    function get_meya_url(method) {
+      return meya_base_url.concat(method, '/', meya_bot_id);
+    }
+
+    function pause_flow(){
+      $.ajax({
+        type: "POST",
+        url: get_meya_url('pause'),
+        data: {
+          "user_id": front_data.contact.handle,
+          "integration": "smooch",
+          "cancel_flows": true
+        },
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('Authorization', get_basic_auth(meya_api_key, ""));
+        },
+        success: function(data){
+          update_status();
+          console.log("Success! Your bot is paused and won't answer.");
+        },
+        error: function(data){
+          alert("Error! There was a problem pausing your bot.");
+        }
+      });
+    };
+
+    function unpause_flow(){
+      $.ajax({
+        type: "POST",
+        url: get_meya_url('unpause'),
+        data: {
+          "user_id": front_data.contact.handle,
+          "integration": "smooch"
+        },
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('Authorization', get_basic_auth(meya_api_key, ""));
+        },
+        success: function(data){
+          update_status();
+          console.log("Success! Your bot is live again.");
+        },
+        error: function(data){
+          alert("Error! There was a problem unpausing your bot!");
+        }
+      });
+    };
+
+    function start_flow(flow_name){
+      $.ajax({
+        type: "POST",
+        url: get_meya_url('start'),
+        data: {
+          "user_id": front_data.contact.handle,
+          "integration": "smooch",
+          "flow": flow_name
+        },
+        beforeSend: function (xhr){
+            xhr.setRequestHeader('Authorization', get_basic_auth(meya_api_key, ""));
+        },
+        success: function(data){
+          update_status(flow_name);
+          console.log("Started the flow: " + flow_name);
+        },
+        error: function(data){
+          alert("Error! There was a problem starting the flow: " + flow_name);
+        }
+      });
+    };    
+  </script>
+</html>
