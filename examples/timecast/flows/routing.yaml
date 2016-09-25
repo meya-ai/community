@@ -6,7 +6,10 @@ intents:
 states:
     greeting:
         flow: greeting
+        return: true
     cancel:
         flow: cancel
+        return: true
     upgrade:
         flow: upgrade
+        return: true
