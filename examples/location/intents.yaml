@@ -1,0 +1,8 @@
+-   flow: bust
+    intent: meya.keyword
+    settings:
+        keyword: bust
+-   flow: location
+    intent: meya.keyword
+    settings:
+        keyword: location

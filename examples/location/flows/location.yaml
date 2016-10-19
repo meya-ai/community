@@ -1,0 +1,25 @@
+name: location
+states:
+    ask_location:
+        component: meya.input_location
+        properties:
+            text: Where are you?
+            output: location
+            scope: user
+            require_match: false
+        transitions:
+            next: success
+            no_match: fail
+    success:
+        component: meya.text
+        properties:
+            text: You are {{ user.lat }}, {{ user.lng }}
+        return: true
+    fail:
+        component: meya.text
+        properties:
+            text: I don't know where that is 🤔
+        delay:
+            relative: 1
+        transitions:
+            next: ask_location

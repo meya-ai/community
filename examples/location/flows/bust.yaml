@@ -1,0 +1,7 @@
+name: bust
+states:
+    text_state:
+        component: meya.text
+        properties:
+            text: Busted 💀
+
