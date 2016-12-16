@@ -1,8 +1,5 @@
 name: routing
-intents:
-    greeting: greeting
-    cancel: cancel
-    upgrade: upgrade
+route: true
 states:
     greeting:
         flow: greeting
